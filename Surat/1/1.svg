@@ -1,0 +1,19 @@
+<svg viewBox="0 0 950 1450" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <clipPath id="c0">
+            <path d="M44 -18H167V150H44Z"/> <!-- Clip path untuk gambar -->
+        </clipPath>
+        <style>
+            .g0 { fill: #FFF; }
+            .g1 { fill: none; stroke: #000; stroke-width: 4.583; stroke-miterlimit: 3; }
+            .g2 { fill: none; stroke: #000; stroke-width: 1.145; stroke-miterlimit: 3; }
+        </style>
+    </defs>
+    <path fill-rule="evenodd" d="M49.8 9.4H163.9V9.3H49.8v.1Z" class="g0"/>
+    <path fill-rule="evenodd" d="M49.8 121.5H163.9H49.8Z" class="g0"/>
+    <path fill-rule="evenodd" d="M49.8 121.5h.1V9.4h-.1V121.5Z" class="g0"/>
+    <path fill-rule="evenodd" d="M163.8 121.5h.1V9.4h-.1V121.5Z" class="g0"/>
+    <image clip-path="url(#c0)" preserveAspectRatio="xMidYMid meet" x="44" y="-18" width="123" height="150" href="img/1.png"/>
+    <path d="M73 128.3l870 .1" class="g1"/> <!-- Garis tebal diperpanjang -->
+    <path d="M73 133.4l870 .1" class="g2"/> <!-- Garis tipis diperpanjang -->
+</svg>

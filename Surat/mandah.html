@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <style>
+
+@page {
+    size: 200mm 330mm; /* Ukuran Legal yang benar */
+    margin-top: 15mm;   /* Atur margin atas (bisa disesuaikan) */
+    margin-right: -10mm; /* Margin kanan */
+    margin-bottom: -10mm;/* Margin bawah */
+    margin-left: 0mm;  /* Margin kiri */
+	
+}
+
+  body {
+  
+    margin: 0;
+    padding: 0;
+    height: 250vh; /* Tinggi body 100% dari viewport */
+    display: flex;
+    justify-content: center; /* Memusatkan secara horizontal */
+    align-items: center; /* Memusatkan secara vertikal */
+    background-color: #969899; /* Warna latar belakang */
+    max-width: 100%; /* Batasan lebar untuk cetak yang baik */
+	font-family: 'BookmanOldStyle', serif;
+	
+   
+}
+
+.BungkusTeks {
+	margin: 0;
+    padding: 0;
+    text-align: center; /* Rata tengah teks */
+    padding: 20px;
+    background-color: white; /* Latar belakang putih */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan */
+    border-radius: 8px; /* Sudut kotak melengkung */
+	
+}
+
+[contenteditable="true"] {
+    outline: none; /* Menghilangkan outline yang muncul pada elemen */
+    border: none;  /* Menghilangkan border jika ada */
+    box-shadow: none; /* Menghilangkan bayangan (shadow) jika ada */
+}
+
+@media print {
+    body {
+        display: block; /* Kembalikan ke block untuk tata letak cetak */
+        height: auto; /* Sesuaikan tinggi dengan konten */
+        justify-content: flex-start; /* Konten dimulai dari atas saat cetak */
+        align-items: flex-start;
+        background-color: white !important; /* Latar belakang putih saat cetak */
+        
+    }
+
+    .BungkusTeks {
+        box-shadow: none; /* Hilangkan bayangan saat cetak */
+        background-color: white; /* Pastikan latar belakang putih saat cetak */
+        page-break-inside: avoid; /* Hindari pemotongan halaman di tengah elemen */
+    }
+	
+}
+
+
+
+/*======================================================================================*/
+
+
+@media print {
+    header, footer, #tabelPenduduk, .icon-container, #popupNama {
+    display: none; /* Sembunyikan header, footer, tabel, popup, dll. */
+	
+	
+		
+    }
+
+    /* Menampilkan elemen utama saat cetak */
+    #pg1, .text-container, textarea {
+        display: block; /* Tampilkan elemen yang diinginkan */
+        height: auto;
+        overflow: visible;
+        page-break-after: auto;
+        background-color: white !important;
+        color-adjust: exact !important;
+    }
+
+    body {
+        background-color: white !important;
+    }
+
+    textarea {
+        border: none !important;
+        width: 100%;
+        padding: 10px;
+        text-align: justify;
+    }
+}
+/*=======================================================*/
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 45px;
+    background-color: #43474a;
+    color: white;
+    display: flex;
+    justify-content: space-between; /* Space between the left, center, and right sections */
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+	
+}
+
+/* Left, Center, and Right sections */
+
+.header-center{
+    flex: 1; /* Equal space for each section */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center-align content in each section */
+	transition: transform 0.5s ease;
+}
+
+
+
+
+.ico1:hover {transform: scale(1.2);opacity: 0.6;}
+.ico2:hover {transform: scale(1.2);opacity: 0.6;}
+.ico3:hover {transform: scale(1.2);opacity: 0.6;}
+.ico4:hover {transform: scale(1.2);opacity: 0.6;}
+.ico5:hover {transform: scale(1.2);opacity: 0.6;}
+
+
+    
+
+
+
+
+
+
+.header-left{
+	flex: 1; /* Equal space for each section */
+    display: flex;
+    align-items: left;
+    justify-content: left; /* Center-align content in each section */
+	font-size: 28px;
+	color: #00bbff;
+}
+
+
+.header-right{
+	flex: 1; /* Equal space for each section */
+    display: flex;
+    align-items: right;
+    justify-content: right; /* Center-align content in each section */
+	font-size: 16px;
+	padding: 40px;
+	color: #bbc2c4;
+}
+
+.container3 button {
+    padding: 3px 9px;
+    font-size: 12px;
+    border: none;
+    border-radius: 1px;
+    cursor: pointer;
+    background-color: #2bd937; /* Warna latar default biru */
+    color: black; /* Warna teks putih */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Animasi transisi */
+    margin-right: 10px; /* Jarak antar tombol */
+}
+
+.container3 button:hover {
+    background-color: #0aa614; /* Warna latar saat hover lebih gelap */
+    transform: scale(1.05); /* Efek memperbesar sedikit saat di-hover */
+    color: #fee; /* Tetap putih saat hover */
+}
+
+/* Fokus pada tombol */
+.container3 button:focus {
+    outline: none; /* Hilangkan outline default saat tombol difokuskan */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Bayangan fokus */
+}
+
+/* CSS untuk header-right untuk posisi */
+.header-right {
+    display: flex;
+    justify-content: flex-end; /* Pindahkan elemen ke kanan */
+    align-items: center; /* Rata tengah secara vertikal */
+    padding: 10px;
+	
+}
+
+
+
+
+
+
+/* Style for the title */
+.title {
+	position: relative;
+	left: 7px;
+	right: 120px;
+	top: 18px;
+	font-size: 21px;
+    font-weight: bold;
+	justify-content: center
+	align-items: center;
+
+	
+
+
+  
+	
+	
+	
+}
+
+/* Icon styles */
+.icon {
+    width: 30px;
+    height: 30px;
+    fill: black;
+    cursor: pointer;
+    margin: 0 10px; /* Space between icons */
+	cursor: pointer;
+}
+
+
+ .icon-hover {
+      width: 300px;
+      transition: opacity 0.5s ease;
+    }
+
+    .icon-hover:hover {
+      opacity: 0.6; /* Set opacity to 60% on hover */
+    }
+	
+	
+	
+/* Button styles for icons */
+#btn-home, #btn-database, #btn-reload, #btn-print {
+    padding: 0 20px; /* Padding for the button area */
+}
+
+#btn-back{
+padding: 15px;
+
+}
+
+/* Hover effect for icons */
+.icon:hover {
+    opacity: 1.8;
+}
+
+/* Hide header in print mode */
+@media print {
+    header {
+        display: none;
+    }
+}
+
+.container3 {
+    margin: 25px;
+	color: #17963d;
+}
+
+
+
+
+    </style>
+	
+	<style>
+	/* CSS POPUP DATA BARU */
+#popupInputDataBaru {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #dedede;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    z-index: 1000;
+    width: 600px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+#popupInputDataBaru h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+#popupInputDataBaru .form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+#popupInputDataBaru .form-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#popupInputDataBaru label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+#popupInputDataBaru input[type="text"],
+#popupInputDataBaru input[type="date"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+    font-size: 14px;
+}
+
+#popupInputDataBaru input[type="text"]:focus,
+#popupInputDataBaru input[type="date"]:focus {
+    border-color: #007bff;
+}
+
+/* Tombol "LANJUT" dan "BATAL" berada di sebelah kanan */
+#popupInputDataBaru .form-buttons {
+    display: flex;
+    justify-content: flex-end;  /* Pindahkan ke kanan */
+    gap: 10px;  /* Jarak antar tombol */
+    margin-top: 20px;
+}
+
+#popupInputDataBaru button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+/* Tombol "LANJUT" dengan teks putih dan background merah */
+#popupInputDataBaru button[type="button"]:first-of-type {
+    background-color: #dc3545;  /* Background merah untuk tombol "LANJUT" */
+    color: #ffffff;  /* Teks putih */
+}
+
+#popupInputDataBaru button[type="button"]:first-of-type:hover {
+    background-color: #2e2e2e;  /* Background merah lebih gelap saat hover */
+}
+
+/* Tombol "BATAL" dengan warna merah dan teks hitam */
+#popupInputDataBaru button[type="button"]:last-of-type {
+    background-color: #32ad2a;  /*WARNA TOMBOL LANJUT FIX 100%*/
+    color: #ffffff;  /* Teks hitam */
+}
+
+#popupInputDataBaru button[type="button"]:last-of-type:hover {
+    background-color: #44c93a;  /*WARNA HOVER TOMBOL LANJUT FIX 100%*/
+}
+
+/* Tombol X kecil di sebelah kanan atas */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #c7c7c7;  /* Hilangkan background */
+    border: none;
+    font-size: 18px;  /* Ukuran font untuk X */
+    cursor: pointer;
+    color: #000000;  /* Warna teks X tetap hitam */
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
+
+close-button:hover {
+    color: #ff0000 !important;  /* Memaksa warna teks X menjadi merah saat hover */
+}
+
+
+/* Hover untuk Tombol X menjadi merah */
+.close-button:hover {
+    background-color: #ff7373;  /* Warna teks X menjadi merah saat hover */
+	color: #ffffff;
+}
+
+/* Efek animasi untuk popup */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+/* Latar belakang gelap saat popup muncul */
+body.popup-active::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+	  </style>
+	
+	
+	
+	
+	<style>
+	
+	
+	 #t4_11 {
+	 font-family: 'BookmanOldStyle', serif;
+           position: absolute;
+           left: 90px;
+		   right: 70px;
+           top: 159px;
+           letter-spacing: 0.23px;
+           word-spacing: 1.19px;
+		   line-height: 1.5;
+           z-index: 10;
+           resize: vertical;
+		   text-align: center;
+		   font-size: 20px;
+		   height: 30px;
+		   padding: 1px;
+		   font-weight: bold;
+		   text-decoration: underline;
+		   text-underline-offset: 5px;
+		   border: none !important; 
+		   outline: none;
+        }
+
+        /* Media query khusus untuk cetak */
+        @media print {
+    * {
+        -webkit-print-color-adjust: exact !important; /* Untuk Chrome */
+        color-adjust: exact !important; /* Untuk Firefox */
+    }
+
+textarea {
+		width: auto;
+		height: 20px;
+		padding-left: 10px;  /* Jarak dari kiri */
+		padding-right: 10px; /* Jarak dari kanan */
+		text-align: center;     /* Rata kiri */
+		
+		
+		
+
+    }
+}
+
+
+
+#t4_12 {
+			font-family: 'BookmanOldStyle', serif;
+           position: absolute;
+           left: 90px;
+		   right: 70px;
+           top: 188px;
+           letter-spacing: 0.23px;
+           word-spacing: 1.19px;
+		   line-height: 1.5;
+           z-index: 10;
+           resize: vertical;
+		   text-align: center;
+		   font-size: 20px;
+		   height: 30px;
+		   padding: 1px;
+		   border: none !important; 
+		   outline: none;
+		
+        }
+
+        /* Media query khusus untuk cetak */
+        @media print {
+    * {
+        -webkit-print-color-adjust: exact !important; /* Untuk Chrome */
+        color-adjust: exact !important; /* Untuk Firefox */
+    }
+
+textarea {
+		width: auto;
+		height: 20px;
+		padding-left: 10px;  /* Jarak dari kiri */
+		padding-right: 10px; /* Jarak dari kanan */
+		text-align: left;     /* Rata kiri */
+
+    }
+}
+	
+	
+	
+	
+	#t9_2 {
+			font-family: 'BookmanOldStyle', serif;
+           position: absolute;
+           left: 155px;
+		   right: 10px;
+           top: 70px;
+		   height: 38px;
+		   width: 76%;
+           letter-spacing: 0.16px;
+           word-spacing: 0.24px;
+		   line-height: 38px;
+           z-index: 10;
+		   text-align: justify;
+		   font-size: 42px;
+		   text-align: center;
+		   text-transform: uppercase;
+		   font-weight: bold;
+		   background-color: white !important;
+		   overflow: hidden;
+           outline: none;
+		   border: none !important;
+		   overflow: hidden;
+		   font-weight: bold;
+        }
+
+
+@media print {
+    * {
+        -webkit-print-color-adjust: exact !important; /* Untuk Chrome */
+        color-adjust: exact !important; /* Untuk Firefox */
+}
+
+    textarea {
+		width: auto;
+		height: auto;
+		padding-left: 10px;  /* Jarak dari kiri */
+		padding-right: 10px; /* Jarak dari kanan */
+		text-align: center;     /* Rata kiri */
+        border: none !important; /* Hilangkan border */
+       /* background-color: yellow !important;  Tes perubahan */
+    }
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+      #t18_1 {
+			font-family: 'BookmanOldStyle', serif;
+           position: absolute;
+           left: 40px;
+		   right: 0px;
+           top: 600px;
+           letter-spacing: 0.16px;
+           word-spacing: 0.24px;
+		   line-height: 1.6;
+           z-index: 10;
+           resize: vertical;
+		   text-align: justify;
+		   font-size: 20px;
+		   
+		   width: 100%;
+		   height: 163px;
+        }
+
+
+@media print {
+    * {
+        -webkit-print-color-adjust: exact !important; /* Untuk Chrome */
+        color-adjust: exact !important; /* Untuk Firefox */
+}
+
+    textarea {
+		width: auto;
+		height: auto;
+		padding-left: 10px;  /* Jarak dari kiri */
+		padding-right: 10px; /* Jarak dari kanan */
+		text-align: left;     /* Rata kiri */
+        border: none !important; /* Hilangkan border */
+       /* background-color: yellow !important;  Tes perubahan */
+    }
+}
+
+
+ #t18_2 {
+			font-family: 'BookmanOldStyle', serif;
+           position: absolute;
+           left: 400px;
+		   right: 90px;
+           top: 955px;
+           letter-spacing: 0.23px;
+           word-spacing: 1.19px;
+		   line-height: 1.2;
+           z-index: 10;
+           resize: vertical;
+		   text-align: center;
+           border: 1px solid black; /* Border untuk tampilan layar */
+		   font-size: 20px;
+		   height: 50px;
+		   outline: none;
+		   border: none !important;
+        }
+
+        /* Media query khusus untuk cetak */
+        @media print {
+    * {
+        -webkit-print-color-adjust: exact !important; /* Untuk Chrome */
+        color-adjust: exact !important; /* Untuk Firefox */
+    }
+
+    textarea {
+		width: 100px;
+		height: 50px;
+		padding-left: 10px;  /* Jarak dari kiri */
+		padding-right: 10px; /* Jarak dari kanan */
+		text-align: left;     /* Rata kiri */
+        border: none !important; /* Hilangkan border */
+       /* background-color: yellow !important;  Tes perubahan */
+    }
+}
+
+
+
+#t9_1 {
+			font-family: 'BookmanOldStyle', serif;
+           position: absolute;
+           left: 60px;
+		   right: 40px;
+           top: 239px;
+           letter-spacing: 0.23px;
+           word-spacing: 1.19px;
+		   line-height: 1.5;
+           z-index: 10;
+           resize: vertical;
+		   text-align: justify;
+		   font-size: 20px;
+		   height: 60px;
+		   outline: none;
+		   border: none !important; 
+    padding: 1px;
+        }
+
+        /* Media query khusus untuk cetak */
+        @media print {
+    * {
+        -webkit-print-color-adjust: exact !important; /* Untuk Chrome */
+        color-adjust: exact !important; /* Untuk Firefox */
+    }
+
+textarea {
+		width: auto;
+		height: 20px;
+		padding-left: 10px;  /* Jarak dari kiri */
+		padding-right: 10px; /* Jarak dari kanan */
+		text-align: left;     /* Rata kiri */
+        border: none !important; /* Hilangkan border */
+       /* background-color: yellow !important;  Tes perubahan */
+    }
+}
+
+
+
+
+#t18_3 {
+			font-family: 'BookmanOldStyle', serif;
+           position: absolute;
+           left: 52px;
+		   right: 53px;
+           top: 829px;
+           letter-spacing: 0.16px;
+           word-spacing: 0.20px;
+		   line-height: 1.6;
+           z-index: 10;
+           resize: vertical;
+		   text-align: justify;
+		   font-size: 20px;
+		   width: 88%;
+		   height: 99px;
+		   outline: none;
+		   border: none !important;
+        }
+
+
+@media print {
+    * {
+        -webkit-print-color-adjust: exact !important; /* Untuk Chrome */
+        color-adjust: exact !important; /* Untuk Firefox */
+}
+
+    textarea {
+		width: auto;
+		height: auto;
+		padding-left: 10px;  /* Jarak dari kiri */
+		padding-right: 10px; /* Jarak dari kanan */
+		text-align: left;     /* Rata kiri */
+        border: none !important; /* Hilangkan border */
+       /* background-color: yellow !important;  Tes perubahan */
+    }
+}
+
+
+
+
+#t1k_1 {
+			font-family: 'BookmanOldStyle', serif;
+           position: absolute;
+           left: 90px;
+		   right: 70px;
+           top: 1080px;
+           letter-spacing: 0.16px;
+           word-spacing: 0.24px;
+		   line-height: 1.6;
+           z-index: 10;
+           resize: vertical;
+		   text-align: justify;
+           border: 1px solid black; /* Border untuk tampilan layar */
+		   font-size: 20px;
+		   border: none !important; /* Hilangkan border */
+		   height: 65px;
+		   text-decoration: underline;
+		   text-underline-offset: 5px;
+		   outline: none;
+        }
+
+
+@media print {
+    * {
+        -webkit-print-color-adjust: exact !important; /* Untuk Chrome */
+        color-adjust: exact !important; /* Untuk Firefox */
+}
+
+    textarea {
+		width: auto;
+		height: auto;
+		padding-left: 10px;  /* Jarak dari kiri */
+		padding-right: 10px; /* Jarak dari kanan */
+		text-align: left;     /* Rata kiri */
+        border: none !important; /* Hilangkan border */
+       /* background-color: yellow !important;  Tes perubahan */
+    }
+}
+
+
+
+
+
+#A1_1 {
+		   left: 138px;right: 70px;top: 310px;width:22%;height:236px;font-family: 'BookmanOldStyle', serif;position: absolute;letter-spacing:0.16px;word-spacing: 0.29px;line-height: 1.3;z-index: 10;resize: vertical;
+		   text-align: justify;border: 1px solid black;font-size: 20px;border: none !important;border: none !important;pointer-events: none;overflow: hidden;outline: none;border: none !important;overflow: hidden;}
+	@media print {*{-webkit-print-color-adjust: exact !important;color-adjust: exact !important;}
+	textarea {width:auto;height: auto;padding-left: 10px;padding-right: 10px;text-align: left;border: none !important;}}
+
+
+#A1_2 {
+		   left: 352px;right: 70px;top: 310px;width:60%;height:30px;font-family: 'BookmanOldStyle', serif;position: absolute;letter-spacing:0.16px;word-spacing: 0.29px;line-height: 1.3;z-index: 10;resize: vertical;
+		   text-align: justify;border: 1px solid black;font-size: 20px;border: none !important;font-weight: bold;outline: none;}
+	@media print {*{-webkit-print-color-adjust: exact !important;color-adjust: exact !important;}
+	textarea {width:auto;height: auto;padding-left: 10px;padding-right: 10px;text-align: left;border: none !important;}}
+	
+	
+#A1_3 {
+		   left: 352px;right: 70px;top: 340px;width: 57%;height: 237px;font-family: 'BookmanOldStyle', serif;position: absolute;letter-spacing: 0.16px;word-spacing: 0.29px;line-height: 1.3;z-index: 10;resize: vertical;text-align: left;border: 1px solid black;font-size: 20px;border: none !important;outline: none;}
+	@media print {*{-webkit-print-color-adjust: exact !important;color-adjust: exact !important;}
+    textarea {width: auto;height: auto;padding-left: 10px;padding-right: 10px;text-align: left;border: none !important;}}
+
+
+
+#meninggal1 {
+		   left: 138px;right: 70px;top: 670px;width:22%;height:126px;font-family: 'BookmanOldStyle', serif;position: absolute;letter-spacing:0.16px;word-spacing: 0.29px;line-height: 1.3;z-index: 10;resize: vertical;
+		   text-align: justify;border: 1px solid black;font-size: 20px;border: none !important;border: none !important;pointer-events: none;overflow: hidden;outline: none;border: none !important;overflow: hidden;}
+	@media print {*{-webkit-print-color-adjust: exact !important;color-adjust: exact !important;}
+	textarea {width:auto;height: auto;padding-left: 10px;padding-right: 10px;text-align: left;border: none !important;}}
+
+#meninggal2 {
+		   left: 352px;right: 70px;top: 670px;width: 57%;height: 140px;font-family: 'BookmanOldStyle', serif;position: absolute;letter-spacing: 0.16px;word-spacing: 0.29px;line-height: 1.3;z-index: 10;resize: vertical;text-align: left;border: 1px solid black;font-size: 20px;border: none !important;outline: none;}
+	@media print {*{-webkit-print-color-adjust: exact !important;color-adjust: exact !important;}
+    textarea {width: auto;height: auto;padding-left: 10px;padding-right: 10px;text-align: left;border: none !important;}}
+
+
+
+
+
+
+
+
+
+
+
+ .container {
+    display: flex;
+    flex-direction: column; /* Atur elemen dalam kolom */
+    align-items: center; /* Rata tengah secara horizontal */
+}
+
+#t18_2 {
+    width: 480px;
+    height: 50px;
+    padding: 1px;
+}
+
+#displayText {
+    border: 1px solid black;
+    width: 300px;
+    height: 150px;
+    padding: 10px;
+    white-space: pre-line; /* Untuk menjaga format baris baru */
+}
+
+#t1k_1 {
+    width: 470px;
+    height: 40px;
+    padding: 10px;
+    font-weight: bold;
+    white-space: pre-line; /* Untuk menjaga format baris baru */
+    text-align: center; /* Rata tengah teks */
+	/*text-decoration: underline;*/
+	letter-spacing: 5px;
+
+	left: 400px;
+	bottom:237px;
+}
+
+
+
+button:hover {
+    background-color: #2ecc71;
+}
+
+/* Popup */
+#popupNama {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #90b0a5;
+   border: 2px solid #2980b9;
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    z-index: 1000;
+    box-shadow: 0 20px 90px rgba(0, 0, 0, 0.5);
+	 position: relative;
+}
+#popupNama::before {
+    content: "";
+    position: absolute;
+    top: -6px; /* Sesuaikan untuk mengatur jarak border luar */
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    border: 2px solid #ffffff; /* Garis luar */
+    border-radius: 12px; /* Sesuaikan agar sesuai dengan border-radius elemen utama */
+    pointer-events: none; /* Agar elemen pseudo tidak mengganggu interaksi */
+}
+
+
+#popupNama h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+#popupNama ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#popupNama li {
+    background-color: #bdc3c7;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#popupNama li:hover {
+    background-color: #ff813d;
+}
+
+#popupNama button {
+    background-color: #1c98c9;
+    padding: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 2px;
+	float: right;
+	 margin-right: 0px;
+	 margin-bottom: 15px;
+	 margin-top: 20px;
+}
+
+#popupNama button:hover {
+    background-color: #29aee3;
+}
+
+
+#kontainerSurat {
+    position: absolute;
+    top: 50px; /* Geser ke bawah */
+    left: 0px; /* Geser ke kanan */
+    width: 100%;
+    height: 100%;
+}
+
+
+    </style>
+	
+
+	
+</head>
+<body style="margin: 0;">
+    <table id="tabelPenduduk">
+        <thead>
+            <tr>
+            <th>Kode</th>
+            <th>KK</th>
+            <th>NIK</th>
+            <th>Nama</th>
+            <th>Tempat Lahir</th>
+            <th>Tanggal Lahir</th>
+            <th>Status</th>
+            <th>Gender</th>
+            <th>Pekerjaan</th>
+            <th>Alamat Dusun</th>
+            <th>Desa</th>
+        </tr>
+    </thead>
+    <tbody id="dataPendudukContainer">
+        <!-- Data penduduk akan ditambahkan di sini -->
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- Header ontop -->
+    <header>
+
+<div class="header-left">
+<img src="1/back.png" id="btn-back" alt="Kembali" class="ico3" width="30" height="30" style="cursor: pointer" onclick="goBack()">
+<span class="title">SURAT</span>
+        <!-- Tombol Kembali -->
+        
+		</div>
+
+        <!-- Tombol Reload -->
+		<img src="1/line.png" id="btn-line" alt="Kembali" width="30" height="30" >
+		<img src="1/home.png" id="btn-home" class="ico1" alt="home" width="30" height="30" style="cursor: pointer" onclick="home()">
+		<img src="1/database.png" id="btn-database" class="ico2" alt="Database" width="30" height="30" style="cursor: pointer" onclick="databasepage()">
+		<img src="1/line.png" id="btn-line" alt="Kembali" width="30" height="30" >
+		
+		<img src="1/reload.png" id="btn-reload" alt="Reload" class="ico4" width="30" height="30" style="cursor: pointer" onclick="reloadPage()">
+		
+		
+		<img src="1/line.png" id="btn-line" alt="Kembali" width="30" height="30" >
+		<img src="1/print.png" id="btn-print" class="ico5" alt="Print" width="30" height="30" style="cursor: pointer" onclick="printPage()">
+		<img src="1/line.png" id="btn-line" alt="Kembali" width="30" height="30" >
+		
+<div class="header-right">
+        <!-- Tombol Print -->
+	<div class="container4">
+		<img src="1/down.png" id="moveDown" class="ico5" alt="Geser Bawah" width="30" height="30" style="cursor: pointer">
+        <img src="1/up.png" id="moveUp" class="ico5" alt="Geser Atas" width="30" height="30" style="cursor: pointer">
+        <img src="1/left.png" id="moveLeft" class="ico5" alt="Geser Kiri" width="30" height="30" style="cursor: pointer">
+        <img src="1/right.png" id="moveRight" class="ico5" alt="Geser Kanan" width="30" height="30" style="cursor: pointer">
+		</div>
+	<div class="container3">
+		<img src="1/line.png" id="btn-line" alt="Kembali" width="30" height="30" >
+		<img src="1/teks-down.png" id="decreaseFont" class="ico5" alt="Tek Minus" width="30" height="30" style="cursor: pointer">
+		<img src="1/teks-up.png" id="increaseFont" class="ico5" alt="Teks Up" width="30" height="30" style="cursor: pointer">
+</div>
+
+    </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body style="margin: 0;">
+<div class="button-container">
+    <!--<button onclick="printSurat()">Cetak Surat</button> -->
+</div>
+
+<div id="p1" style="overflow: hidden; position: relative; background-color: white; width: 925px; height: 1430px;">
+
+
+<!-- Begin shared CSS values -->
+<style class="shared-css" type="text/css" >
+.t {
+	transform-origin: bottom left;
+	z-index: 2;
+	position: absolute;
+	white-space: pre;
+	overflow: visible;
+	line-height: 1.5;
+}
+.text-container {
+	white-space: pre;
+}
+@supports (-webkit-touch-callout: none) {
+	.text-container {
+		white-space: normal;
+	}
+}
+
+</style>
+<!-- End shared CSS values -->
+
+
+<!-- Begin inline CSS -->
+<style type="text/css" >
+		/* PENGATURAN CENTER */
+#container {position: relative;width: 100%;}
+#t3_1, #t3_2 {position: absolute;bottom: 1464px;letter-spacing: 0.5px;word-spacing: -0.03px;font-size: 43px;
+		text-transform: uppercase;display: none;font-family: 'BookmanOldStyle';}
+		/* KOP */
+#t1_1{width:690px;left:143px;bottom:1395px;height:23px;weight:300px;letter-spacing:0.02px;word-spacing:0.11px;font-size: 30px;font-weight: bold;overflow: hidden;text-align: center;line-height: 23px;font-family: 'BookmanOldStyle';outline: none;border: none !important; } 
+#t2_1{width:600px;left:190px;bottom:1356px;height:23px;weight:300px;letter-spacing:0.02px;word-spacing:0.11px;font-size: 32px;font-weight: bold;overflow: hidden;text-align: center;line-height: 23px;font-family: 'BookmanOldStyle';outline: none;border: none !important; } 
+
+
+		/* Adalah benar Orang Tua /Wali Kandung dari : */
+#ts_1{left:60px;bottom:603px;letter-spacing:0.14px;font-size: 20px;}  
+
+.s0{font-size:29px;color:#000;font-size: 20px;}
+.s1{font-size:47px;color:#000;font-size: 20px;}
+.s2{font-size:18px;color:#000;font-size: 20px;}
+.s3{font-size:18px;color:#000;font-size: 20px;}
+.s4{font-size:18px;color:#000;font-size: 20px;}
+</style>
+<!-- End inline CSS -->
+
+<!-- Begin embedded font definitions -->
+<style id="fonts1" type="text/css" >
+
+@font-face {
+	font-family: 'BookmanOldStyle';
+	src: url("fonts/bookmanoldstyle.ttf") format('truetype');
+}
+@font-face {
+	font-family: 'bookmanoldstyle_bold';
+	src: url("fonts/bookmanoldstyle_bold.ttf") format('truetype');
+}
+
+
+</style>
+<!-- End embedded font definitions -->
+
+
+<div class="text-container">
+    <div id="kontainerSurat">
+	
+
+<!-- Begin page background -->
+<div id="pg1Overlay" style="width:100%; height:100%; position:absolute; z-index:1; background-color:rgba(0,0,0,0); -webkit-user-select: none;"></div>
+<div id="pg1" style="-webkit-user-select: none;"><object width="931" height="1430" data="1/1.svg" type="image/svg+xml" id="pdf1" style="width:925px; height:1430px; -moz-transform:scale(1); z-index: 0;"></object></div>
+<!-- End page background -->
+
+<div id="BungkusTeks">
+<!-- Begin text definitions (Positioned/styled in CSS) -->
+<div class="text-container"><textarea id="t1_1" class="t s0">    PEMERINTAH KABUPATEN BIREUEN </textarea>
+<textarea id="t2_1" class="t s0">  KECAMATAN JANGKA </textarea>
+<textarea id="t9_2" rows="1" cols="50" placeholder="GAMPONG LOADING..."  ></textarea>
+<div id="container">
+<span id="t3_1" class="t s1">GAMPONG </span><span id="t3_2" class="t s1">desa</span>
+</div>
+<textarea id="t4_12" rows="3" cols="50" placeholder="NOMOR SURAT :     /       /      /2024"></textarea>
+<textarea id="t4_11" rows="3" cols="50" placeholder="SURAT KETERANGAN MENINGGAL"></textarea>
+<textarea id="t9_1" rows="4" cols="50" placeholder="Keuchik Gampong .... Kecamatan Jangka Kabupaten Bireuen dengan ini"></textarea>
+<div id="displayText"></div>
+<textarea id="A1_2" rows="4" cols="50" placeholder="NAMA" ></textarea>   <!-- NAMA A1 -->
+<textarea id="A1_1" rows="4" cols="50" placeholder="NAMA" ></textarea>   <!-- KET A1_1 -->
+<textarea id="A1_3" rows="4" cols="50" placeholder="Input Menual dibatalkan"  ></textarea>   <!-- SELURUH DATA A1_3 -->
+
+<textarea id="B1_2" rows="4" cols="50" placeholder="Input Menual dibatalkan"></textarea>     <!-- NAMA B1 -->
+<textarea id="B1_1" rows="4" cols="50" placeholder="NAMA" ></textarea>   <!-- KET B1_1 -->
+<textarea id="B1_3" rows="4" cols="50" placeholder="Input Menual dibatalkan Silahkan Refresh halaman"></textarea>     <!-- Data NIK B1 -->
+<div id="editableText"  style="border: 1px solid black; width: 300px; height: 150px; text-align: justify; padding: 10px;">
+<div id="t18_1"  style="width: 89%; white-space: normal; text-align: justify; padding-left: 20px;" class="hide-on-print" ></div>
+
+<textarea id="meninggal1" rows="4" cols="50" placeholder="" ></textarea>
+<textarea id="meninggal2" rows="4" cols="50" placeholder="" ></textarea>   <!-- NAMA A1 -->
+
+
+</div>
+<textarea id="t18_3" rows="3" cols="50" placeholder="Demikian surat keterangan ini kami dibuat dan diberikan kepada yang berkepentingan untuk selanjutnya supaya dipergunakan seperlunya."></textarea>
+<textarea id="t1k_1" class="t s2">Sedang Mencari...</textarea>
+<!-- End text definitions -->
+<textarea id="t18_2" rows="4" cols="50" placeholder="Gampong, Tgl Bulan Tahun"></textarea>
+<div id="displayText"></div>
+
+<div id="displayText"></div>
+
+</div>
+</div>
+
+	</div>
+</div>
+	
+
+<!-- Popup -->
+<div id="popupNama" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; border: 1px solid #ccc; padding: 20px; z-index: 1000;">
+    <h3>Pilih Nama Orang Tua /Wali Kandung</h3>
+	<br>
+    <ul id="daftarNama">
+        <!-- Daftar nama akan ditambahkan di sini -->
+    </ul>
+		<button onclick="tutupPopup()">Batal</button>
+	<button onclick="bukaPopupInput()" style="margin-right: 10px;">Input Manual</button>
+</div>
+
+
+
+
+<!-- Popup untuk Input Data Baru -->
+<div id="popupInputDataBaru" style="display: none;">
+<button class="close-button" onclick="tutupPopupInput()">X</button>
+    <h3>Input Mode Menual</h3>
+    <form id="formInputDataBaru">
+        <div class="form-row">
+            <div class="form-column">
+                
+                <input type="text" id="inputKode" placeholder="Kode" required>
+                <input type="text" id="inputKK" placeholder="KK" required>
+                <input type="text" id="inputNIK" placeholder="NIK" required>
+                <input type="text" id="inputNama" placeholder="Nama Orang Tua/ Wali Kandung" required>
+                <input type="text" id="inputTempatLahir" placeholder="Tempat Lahir" required>
+                <input type="date" id="inputTanggalLahir" placeholder="Tanggal Lahir" required>
+            </div>
+            <div class="form-column">
+                <input type="text" id="inputStatus" placeholder="Status" required>
+                <input type="text" id="inputJenisKelamin" placeholder="Jenis Kelamin" required>
+                <input type="text" id="inputPekerjaan" placeholder="Pekerjaan" required>
+                <input type="text" id="inputAlamatDusun" placeholder="Alamat Dusun" required>
+                <input type="text" id="inputDesa" placeholder="Desa" required>
+            </div>
+        </div>
+        <div class="form-buttons">
+			<button type="button" onclick="simpanDataBaru()">LANJUT</button>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+
+
+function hideTable() {
+    document.getElementById('tabelPenduduk').style.display = 'none'; // Menyembunyikan tabel
+}
+
+
+  
+function ambilCell() {
+    // Mendapatkan referensi tabel
+    const tabel = document.getElementById("tabelPenduduk");
+
+    if (tabel && tabel.rows.length > 1) {
+        // Mengambil data dari sel tabel
+        const kode = tabel.rows[1].cells[0]?.innerText || "Data tidak ada"; // Kolom "Kode"
+        const nama = tabel.rows[1].cells[3]?.innerText || "Data tidak ada"; // Kolom "Nama"
+        const nik = tabel.rows[1].cells[2]?.innerText || "Data tidak ada"; // Kolom "NIK"
+        const tempatlahir = tabel.rows[1].cells[4]?.innerText || "Data tidak ada"; // Kolom "Tempat Lahir"
+        const tgllahir = tabel.rows[1].cells[5]?.innerText || "Data tidak ada"; // Kolom "Tanggal Lahir"
+        const job = tabel.rows[1].cells[8]?.innerText || "Data tidak ada"; // Kolom "Pekerjaan"
+        const dusun = tabel.rows[1].cells[9]?.innerText || "Data tidak ada"; // Kolom "Dusun"
+        const desa = tabel.rows[1].cells[10]?.innerText || "Data tidak ada"; // Kolom "Desa"
+		const jeniskelamin = tabel.rows[1].cells[7]?.innerText || "Data tidak ada"; // Kolom "Desa"
+		const kk = tabel.rows[1].cells[1]?.innerText || "Data tidak ada"; // Kolom "NIK"
+		const status = tabel.rows[1].cells[6]?.innerText || "Data tidak ada"; // Kolom "NIK"
+		
+
+        // Menampilkan data dalam elemen dengan id tertentu
+		document.getElementById('t9_2').innerText = `GAMPONG ${desa}`;
+		document.getElementById('t4_11').innerHTML = `SURAT KETERANGAN MANDAH`;
+		document.getElementById('t4_12').innerHTML = `NOMOR:      / ${kode} /SKM/${getDate()}`;
+		document.getElementById('t9_1').innerText = `Keuchik Gampong ${desa} Kecamatan Jangka Kabupaten Bireuen Provinsi Aceh dengan ini menerangkan bahwa :`;
+        document.getElementById("t3_2").innerText = desa;
+		document.getElementById("A1_1").innerText = `Nama :\n
+													 Tempat/Tgl.Lahir :\n
+													 NIK :\n
+													 No.KK :\n
+													 Jenis Kelamin   :\n
+													 Status Perkawinan :\n
+													 Agama :\n
+													 Pekerjaan :\n
+													 Alamat :\n
+													 .`;
+		document.getElementById("meninggal1").innerText = `Desa/ Kelurahan   :\n
+													 Kecamatan :\n
+													 Kabupaten/ Kota   :\n
+													 Provinsi   :\n
+													 Tujuan Pindah     :\n
+													 .`;
+													 
+		document.getElementById("A1_2").innerHTML = nama;
+		document.getElementById("A1_3").value = `${tempatlahir}, ${tgllahir}\n${nik}\n${kk}\n${jeniskelamin}\n${status}\nIslam\n${job}\n${dusun} Gampong ${desa} Kecamatan Jangka Kabupaten Bireuen`;
+		
+		
+		 let spasi = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'; // 10 spasi
+		let teks = `${spasi}Benar yang tersebut namanya diatas adalah penduduk Gampong ${desa} Kecamatan Jangka Kabupaten Bireuen dan hendak&nbsp;&nbsp;"Mandah" ke :`;
+        teks = teks.replace(/"(.*?)"/g, '<b><u style="text-underline-offset: 6px;">$1</u></b>');
+        document.getElementById('t18_1').innerHTML = teks;
+        document.getElementById('t18_1').contentEditable = "true"; 
+		 
+		 
+		document.getElementById('t18_3').innerText = `      Demikian surat keterangan ini kami dibuat dan diberikan kepada yang berkepentingan untuk selanjutnya supaya dipergunakan seperlunya.`;
+		document.getElementById('t18_2').value = `${desa}, ${getFormattedDate()}\nKEUCHIK GAMPONG`;
+
+		document.getElementById("meninggal2").value = `Alamat_Tujuan\nJangka\nBireuen\nAceh\nIkut Suami`;
+
+
+
+		 
+		 // Menampilkan data dalam elemen input
+        document.getElementById("inputKode").value = kode; // Menggunakan value untuk input
+        document.getElementById("inputAlamatDusun").value = dusun; // Menggunakan value untuk input
+        document.getElementById("inputDesa").value = desa; // Menggunakan value untuk input
+		
+
+
+					
+						
+						
+						
+				}
+        }
+		
+function adjustTextPositions() {
+    const t3_1 = document.getElementById('t3_1');
+    const t3_2 = document.getElementById('t3_2');
+
+    // Dapatkan lebar elemen
+    const t3_1Width = t3_1.offsetWidth;
+    const t3_2Width = t3_2.offsetWidth;
+
+    // Dapatkan lebar container
+    const containerWidth = document.getElementById('container').offsetWidth;
+
+    // Tentukan jarak di antara kedua elemen
+    const spacing = 4;
+
+    // Hitung lebar total kedua elemen dan jaraknya
+    const totalWidth = t3_1Width + t3_2Width + spacing;
+
+    // Tambahkan offset untuk menggeser lebih ke kanan
+    const offset = 240; // Geser ke kanan sebesar 30px
+
+    // Hitung posisi kiri untuk elemen pertama agar berada di tengah ditambah offset
+    const t3_1Left = (containerWidth / 2) - (totalWidth / 2) + offset;
+
+    // Atur posisi elemen pertama dan kedua
+    t3_1.style.position = 'absolute';
+    t3_1.style.left = t3_1Left + 'px';
+
+    t3_2.style.position = 'absolute';
+    t3_2.style.left = (t3_1Left + t3_1Width + spacing) + 'px';
+}
+
+
+
+
+function shiftImageLeft() {
+    const pdfObject = document.getElementById('pdf1');
+    pdfObject.style.transform = 'translateX(-12%)'; // Geser ke kiri 20%
+	pdfObject.style.transform = 'translateY(-6.80%)'; // Geser ke kiri 10%
+}
+		
+	function formatDate(dateString) {
+    const options = { day: '2-digit', month: 'long', year: 'numeric' }; // Ubah format bulan menjadi 'long'
+    const date = new Date(dateString);
+    return date.toLocaleDateString('id-ID', options); // Format dalam bahasa Indonesia
+}	
+
+
+function getFormattedDate() {
+    const today = new Date();
+    const options = { day: '2-digit', month: 'long', year: 'numeric' }; // Format tanggal: 2 digit hari, nama bulan, dan tahun
+    return today.toLocaleDateString('id-ID', options); // Format dalam bahasa Indonesia
+}
+
+function getDate() {
+    const today = new Date();
+    return today.getFullYear(); // Mengembalikan tahun saja (misalnya, 2025)
+}
+
+		
+	 // Fungsi untuk menampilkan teks dari textarea ke div dengan mengganti '\n' menjadi '<br>'
+    function updateText() {
+        const textareaContent = document.getElementById('t18_2').value;
+        const formattedText = textareaContent.replace(/\n/g, '<br>');
+        document.getElementById('displayText').innerHTML = formattedText;
+    }	
+		
+
+
+function isiPopup() {
+    const daftarNama = document.getElementById('daftarNama');
+    daftarNama.innerHTML = ''; // Kosongkan daftar terlebih dahulu
+    
+    // Mulai dari elemen kedua (indeks 1) dalam array data
+    combinedData.checked.slice(0).forEach((item, index) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = item.nama;
+        listItem.style.cursor = 'pointer';
+        listItem.onclick = () => pilihNama(item.nama);
+        daftarNama.appendChild(listItem);
+    });
+}
+
+// Fungsi untuk menampilkan popup
+function bukaPopup() {
+    document.getElementById('popupNama').style.display = 'block';
+    isiPopup(); // Isi daftar nama dalam popup setiap kali dibuka
+}
+
+// Fungsi untuk menutup popup
+function tutupPopup() {
+    document.getElementById('popupNama').style.display = 'none';
+}
+
+// Fungsi untuk menampilkan detail berdasarkan nama yang dipilih
+function pilihNama(namaTerpilih) {
+    tutupPopup(); // Tutup popup setelah memilih nama
+    
+    // Cari data yang cocok dengan nama yang dipilih
+    const penduduk = combinedData.checked.slice(0).find(item => item.nama === namaTerpilih);
+    
+    // Tampilkan detail jika ditemukan
+    if (penduduk) {		
+		document.getElementById('B1_2').innerText = penduduk.nama;
+		document.getElementById('B1_3').value = `${penduduk.nik}\n${penduduk.tempatlahir},  ${formatDate(penduduk.tgllahir)}\n${penduduk.jeniskelamin}\nIslam\n${penduduk.pekerjaan}\n${penduduk.alamatdusun} Gampong ${penduduk.desa} Kecamatan Jangka Kabupaten Bireuen`;
+
+    } else {
+        // Kosongkan jika tidak ada data yang sesuai
+        document.getElementById('tz_1').innerText = '';
+        document.getElementById('t18_1').innerText = '';
+		document.getElementById('t9_2').innerText = 'GAMPONG LOADING...';
+	t4_1
+    }
+}
+
+function justifyText() {
+        const editableDiv = document.getElementById('editableText');
+        let content = editableDiv.innerHTML;
+
+        // Tambahkan tag <p> dan style untuk text-align: justify
+        content = `<p style="text-align: justify;">${content}</p>`;
+        editableDiv.innerHTML = content;
+    }
+
+    // Event listener untuk mendeteksi perubahan teks di dalam div
+    //document.getElementById('editableText').addEventListener('input', justifyText);
+	
+	
+	
+ // Fungsi untuk tombol "Back"
+        function goBack() {
+            window.history.back();
+        }
+
+        // Fungsi untuk tombol "Reload"
+        function reloadPage() {
+            location.reload();
+        }
+		
+		// Fungsi untuk tombol "Home"
+		function home() {
+			window.location.href = "../dasboard.html"; // Mengarahkan ke halaman dashboard.html
+		}
+		// Fungsi untuk tombol "Databse"
+		function databasepage() {
+			window.location.href = "../data_penduduk.html"; // Mengarahkan ke halaman database.html
+		}
+
+
+
+//===========================================
+
+// Skrip untuk geser kontainerSurat dan ukuran font
+    const kontainerSurat = document.getElementById('kontainerSurat');
+    const moveUpBtn = document.getElementById('moveUp');
+    const moveDownBtn = document.getElementById('moveDown');
+    const moveLeftBtn = document.getElementById('moveLeft');
+    const moveRightBtn = document.getElementById('moveRight');
+
+    if (kontainerSurat && moveUpBtn && moveDownBtn && moveLeftBtn && moveRightBtn) {
+        let posTop = 50;
+        let posLeft = 0;
+
+        moveUpBtn.addEventListener('click', () => {
+            posTop -= 5;
+            kontainerSurat.style.top = posTop + 'px';
+        });
+
+        moveDownBtn.addEventListener('click', () => {
+            posTop += 5;
+            kontainerSurat.style.top = posTop + 'px';
+        });
+
+        moveLeftBtn.addEventListener('click', () => {
+            posLeft -= 5;
+            kontainerSurat.style.left = posLeft + 'px';
+        });
+
+        moveRightBtn.addEventListener('click', () => {
+            posLeft += 5;
+            kontainerSurat.style.left = posLeft + 'px';
+        });
+    } else {
+        console.error('Elemen tidak ditemukan: pastikan #kontainerSurat, #moveUp, #moveDown, #moveLeft, dan #moveRight ada di HTML');
+    }
+
+    const textArea = document.getElementById('t9_2');
+    const increaseBtn = document.getElementById('increaseFont');
+    const decreaseBtn = document.getElementById('decreaseFont');
+
+    if (textArea && increaseBtn && decreaseBtn) {
+        let fontSize = 42;
+
+        increaseBtn.addEventListener('click', () => {
+            fontSize += 2;
+            textArea.style.fontSize = fontSize + 'px';
+        });
+
+        decreaseBtn.addEventListener('click', () => {
+            if (fontSize > 8) {
+                fontSize -= 2;
+                textArea.style.fontSize = fontSize + 'px';
+            }
+        });
+    } else {
+        console.error('Elemen tidak ditemukan: pastikan #t9_2, #increaseFont, dan #decreaseFont ada di HTML');
+    }
+
+
+//===================================================
+
+function bukaPopupInput() {
+    document.getElementById('popupInputDataBaru').style.display = 'block';
+}
+
+
+function tutupPopupInput() {
+    document.getElementById('popupInputDataBaru').style.display = 'none';
+}
+
+// Fungsi untuk menyimpan data input dan mengirimkan ke elemen dengan ID
+function simpanDataBaru() {
+    const nama = document.getElementById('inputNama').value;
+    const nik = document.getElementById('inputNIK').value;
+    const tempatLahir = document.getElementById('inputTempatLahir').value;
+    const tanggalLahir = document.getElementById('inputTanggalLahir').value;
+    const jenisKelamin = document.getElementById('inputJenisKelamin').value;
+    const pekerjaan = document.getElementById('inputPekerjaan').value;
+    const alamatDusun = document.getElementById('inputAlamatDusun').value;
+    const desa = document.getElementById('inputDesa').value;
+
+    // Validasi agar semua input terisi
+    if (!nama || !nik || !tempatLahir || !tanggalLahir || !jenisKelamin || !pekerjaan || !alamatDusun || !desa) {
+        alert("Semua data harus diisi!");
+        return;
+    }
+
+    // Mengisi data ke elemen dengan ID yang sesuai
+	document.getElementById('t9_1').innerText = `Keuchik Gampong ${desa} Kecamatan Jangka Kabupaten Bireuen Provinsi Aceh dengan ini menerangkan bahwa :`;
+	document.getElementById('t18_1').innerText = `     Benar yang tersebut namanya diatas adalah penduduk Gampong ${desa} Kecamatan Jangka Kabupaten Bireuen dan setelah diadakan penelitian hingga saat dikeluarkannya Surat Keterangan ini, yang bersangkutan benar-benar keadaan sosial ekonominya tergolong MENINGGAL /Miskin.`;
+	document.getElementById('t18_3').innerText = `   Demikian surat keterangan ini kami dibuat dan diberikan kepada yang berkepentingan untuk selanjutnya supaya dipergunakan seperlunya.`;
+	document.getElementById('t9_2').innerText = `GAMPONG ${desa}`;
+	document.getElementById('t18_2').innerText = `${desa}, ${getFormattedDate()}               Keuchiek Gampong`;
+	
+	
+	document.getElementById('B1_2').innerText = `  ${nama}`;
+
+	
+		
+		document.getElementById("B1_3").value = `: ${nik}\n: ${tempatLahir}, ${formatDate(tanggalLahir)}\n: Islam\n: ${pekerjaan}\n: ${alamatDusun} Gampong ${desa}\n  Kecamatan Jangka Kabupaten Bireuen`;
+	
+	
+    // Tutup popup setelah data disimpan
+    tutupPopupInput();
+	tutupPopup();
+}
+
+
+
+
+
+
+
+
+
+//==================================================================================================================================================
+//==================skrip KeuchikToSurat
+
+ const GAS_URL = 'https://script.google.com/macros/s/AKfycbw-vARiPzX3E4qoai7LV4gwhaEqhoC5EvZIpaZHveiy28I10lDQ7-3qSUrM6vSLJ59rgA/exec';
+
+        // Fungsi untuk mengambil nama kepala desa dari Google Apps Script
+        async function fetchKepalaDesa(desa) {
+            try {
+                console.log(`Mengambil kepala desa untuk desa: ${desa}`); // Debugging log
+                const response = await fetch(`${GAS_URL}?desa=${encodeURIComponent(desa)}`);
+                const data = await response.json();
+                console.log(`Data yang diterima dari GAS:`, data); // Log data yang diterima
+                return data.kepalaDesa;
+            } catch (error) {
+                console.error('Error saat fetch kepala desa:', error);
+                return 'Error mengambil data kepala desa';
+            }
+        }
+
+        // Fungsi untuk menampilkan kepala desa di elemen span
+        async function tampilkanKepalaDesa() {
+            let desa = document.getElementById("t3_2").innerText; // Mengambil nama desa dari elemen HTML
+            desa = desa.replace('Gampong ', ''); // Hapus "Gampong" dari nama desa
+            console.log(`Nama desa yang dikirim: ${desa}`); // Debugging log
+
+            const kepalaDesa = await fetchKepalaDesa(desa); // Ambil kepala desa dari GAS
+
+            // Tampilkan nama kepala desa di elemen <span id="t1k_1">
+            document.getElementById('t1k_1').innerText = kepalaDesa;
+        }
+
+        // Panggil fungsi saat halaman dimuat
+        window.onload = function() {
+            tampilkanKepalaDesa();  // Tampilkan nama kepala desa di <span>
+        };
+		
+		
+		
+		
+//==================================================================================================================================================
+//==================BATAS SURAT
+// Mengambil parameter dari URL
+const urlParams = new URLSearchParams(window.location.search);
+const data = urlParams.get('data'); // Ambil data yang dikirim
+const combinedData = JSON.parse(decodeURIComponent(data)); // Decode dan parse data
+
+// Menampilkan data dari penduduk terpilih
+const dataPendudukContainer = document.getElementById('dataPendudukContainer');
+
+function displayData(dataPenduduk) {
+    const row = `<tr>
+        <td>${dataPenduduk.selected.kode}</td>
+        <td>${dataPenduduk.selected.kk}</td>
+        <td>${dataPenduduk.selected.nik}</td>
+        <td>${dataPenduduk.selected.nama}</td>
+        <td>${dataPenduduk.selected.tempatlahir}</td>
+		<td>${formatDate(dataPenduduk.selected.tgllahir)}</td>
+        <td>${dataPenduduk.selected.status}</td>
+        <td>${dataPenduduk.selected.jeniskelamin}</td>
+        <td>${dataPenduduk.selected.pekerjaan}</td>
+        <td>${dataPenduduk.selected.alamatdusun}</td>
+        <td>${dataPenduduk.selected.desa}</td>
+    </tr>`;
+    
+    dataPendudukContainer.insertAdjacentHTML('beforeend', row);
+
+    // Tampilkan data dari checkbox yang terpilih
+    combinedData.checked.forEach(item => {
+        const row = `<tr>
+            <td>${item.kode}</td>
+            <td>${item.kk}</td>
+            <td>${item.nik}</td>
+            <td>${item.nama}</td>
+            <td>${item.tempatlahir}</td>
+			<td>${formatDate(item.tgllahir)}</td>
+            <td>${item.status}</td>
+            <td>${item.jeniskelamin}</td>
+            <td>${item.pekerjaan}</td>
+            <td>${item.alamatdusun}</td>
+            <td>${item.desa}</td>
+        </tr>`;
+        dataPendudukContainer.innerHTML += row;
+    });
+}
+
+
+// Menampilkan data penduduk
+displayData(combinedData);
+
+	
+	        window.onload = function() {
+            
+		ambilCell();          // Ambil data dari tabel
+        adjustTextPositions(); // Sesuaikan posisi teks
+        tampilkanKepalaDesa(); // Tampilkan nama kepala desa
+        isiPopup();            // Tampilkan popup nama jika perlu
+        shiftImageLeft();      // Pindahkan gambar jika diperlukan
+		hideTable();
+}
+
+        // Fungsi untuk tombol "Print"
+        function printPage() {
+            window.print();
+        }
+
+</script>
+
+</body>
+</html>
